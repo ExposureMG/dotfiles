@@ -1,9 +1,6 @@
 # Load Antigen
 source $ZSHPLDIR/antigen/antigen.zsh
 
-zstyle ':completion:*' menu select
-zstyle ':completion::complete:*' gain-privileges 1
-
 alias stowaway="stow -vt ~ *"
 
 # Load O-M-ZSH

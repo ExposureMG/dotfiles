@@ -1,2 +1,2 @@
-rm ~/dotfiles/home/zsh/.config/zsh/.zhistory
-touch ~/dotfiles/home/zsh/.config/zsh/.zhistory
+rm ~/.config/zsh/.zhistory
+touch ~/.config/zsh/.zhistory

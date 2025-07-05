@@ -2,10 +2,9 @@
 # ☠️ ExposureMG's Dotfiles
 Personal dotfiles to cover mostly server-side setup. Includes my openrgb config since its stored in .config.
 GNU Stow based. Setup script included.
-![Terminal](https://i.ibb.co/N6hPzMWg/terminal.png)
-![nano](https://i.ibb.co/PZL8xx45/nano.png)
-## 🧪 ZSH | 🦠 [Antigen V2](https://github.com/zsh-users/antigen)
 
+## 🧪 ZSH | 🦠 [Antigen V2](https://github.com/zsh-users/antigen)
+![Terminal](https://i.ibb.co/N6hPzMWg/terminal.png)
   
 
 **Config ⚙️**
@@ -63,7 +62,7 @@ GNU Stow based. Setup script included.
   
 
 ## Nano
-
+![nano](https://i.ibb.co/PZL8xx45/nano.png)
   
 
 **Plugins 🧩**

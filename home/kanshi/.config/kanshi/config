@@ -1,0 +1,17 @@
+output "BNQ BenQ GL2780 ETS8L0035204U" {
+  mode 1920x1080@60
+  position 2560,0
+  scale 1
+  alias $SECONDARY
+}
+output "GIGA-BYTE TECHNOLOGY CO., LTD. M27Q 20120B000001" {
+  mode 2560x1440@143.856003
+  position 0,0
+  scale 1
+  alias $PRIMARY
+}
+
+profile default {
+  output $PRIMARY  enable
+  output $SECONDARY enable
+}

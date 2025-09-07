@@ -5,7 +5,13 @@ GNU Stow based. Setup script included.
 
 ## 🧪 ZSH | 🦠 [Antigen V2](https://github.com/zsh-users/antigen)
 ![Terminal](https://i.ibb.co/N6hPzMWg/terminal.png)
-  
+
+temp credits
+kamlendras / waybar-macos-sequoia
+Dr-Noob / Arc-Dark-OSX
+vinceliuice / WhiteSur (GTK, Qt)
+FengZhongShaoNian / QWhiteSurGtkDecorations
+
 
 **Config ⚙️**
 

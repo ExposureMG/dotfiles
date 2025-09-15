@@ -1,5 +1,10 @@
 mkdir install-e3-x0-dotfiles && cd install-e3-x0-dotfiles
 sudo pacman -Syu
-sudo pacman -S --needed git base-devel rust 
-sudo pacman -S --needed zsh nano eza xdg-user-dirs
+sudo pacman -S --needed 
+
+git base-devel rust make
+zsh nano eza xdg-user-dirs
 nano-syntax-highlighting
+
+labwc
+waybar kanshi mako kwallet 

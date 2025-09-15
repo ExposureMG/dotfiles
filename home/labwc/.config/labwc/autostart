@@ -1,8 +1,0 @@
-kwalletd6 >/dev/null 2>&1 &
-/usr/lib/pam_kwallet_init 2>&1 &
-lxqt-policykit-agent >/dev/null 2>&1 &
-kanshi >/dev/null 2>&1 &
-swaybg -o DP-1 -i /home/e3xp0/Pictures/wpaper/SonomaAbove1.png -o HDMI-A-2 -i /home/e3xp0/Pictures/wpaper/SonomaAbove2.png >/dev/null 2>&1 &
-mako >/dev/null 2>&1 &
-waybar --log-level off >/dev/null 2>&1 &
-wl-paste --watch cliphist store >/dev/null 2>&1 &

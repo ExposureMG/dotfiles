@@ -1,0 +1,16 @@
+[Unit]
+Description=LXQt polkit agent
+Documentation=man:lxqt-policykit-agent(1)
+# order startup after WM
+After=graphical-session.target
+
+[Service]
+Type=exec
+# Repurpose XDG Autostart filtering
+ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "wlroots" ""
+ExecStart=lxqt-policykit-agent
+Restart=on-failure
+Slice=app-graphical.slice
+
+[Install]
+WantedBy=graphical-session.target

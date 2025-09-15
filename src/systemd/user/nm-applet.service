@@ -1,0 +1,17 @@
+[Unit]
+Description=NetworkManager Applet
+Documentation=man:nm-applet(1)
+# order startup after WM
+After=graphical-session.target
+
+[Service]
+Type=exec
+# Repurpose XDG Autostart filtering
+ExecCondition=/lib/systemd/systemd-xdg-autostart-condition "wlroots" ""
+ExecStart=/usr/bin/nm-applet
+ExecReload=kill -SIGUSR2 $MAINPID
+Restart=on-failure
+Slice=app-graphical.slice
+
+[Install]
+WantedBy=graphical-session.target

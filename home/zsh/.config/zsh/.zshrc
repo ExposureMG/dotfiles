@@ -75,4 +75,5 @@ alias usc-dn="systemctl --user disable --now"
 
 alias mkdir="mkdir -p"
 
-
+alias fuzzel="fuzzel --launch-prefix='app2unit --fuzzel-compat --'"
+alias runapp="app2unit"

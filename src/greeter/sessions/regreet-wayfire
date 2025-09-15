@@ -1,0 +1,2 @@
+#!/bin/sh
+wayfire -c /etc/greetd/regreet.ini

@@ -1,33 +1,22 @@
-source $ZDOTDIR/plugins/antigen/antigen.zsh
-
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-antigen bundle zsh-users/zsh-autosuggestions
-
-antigen bundle zsh-users/zsh-completions
-
-antigen theme duellj
-
-antigen apply
-
-source /usr/share/doc/find-the-command/ftc.zsh
-
 # Stow link command
 alias stowaway="stow -vt ~ *"
 
 # Aliases
 # d = dir only, f = file only
+# ls
 alias ls="eza --color=always --icons=always --level=3 --group-directories-first"
-alias dls="eza --color=always --icons=always --level=3 --group-directories-first -D"
-alias fls="eza --color=always --icons=always --level=3 --group-directories-first -f"
-
+# ls all
 alias lsa="eza -la --no-time --no-filesize --group-directories-first -g"
-alias dlsa="eza -la --no-time --no-filesize --group-directories-first -g -D"
-alias flsa="eza -la --no-time --no-filesize --group-directories-first -g -f"
-
+# ls tree
 alias tree="eza --color=always --icons=always --level=3 --group-directories-first -T"
-alias dtree="eza --color=always --icons=always --level=3 --group-directories-first -T -D"
-alias ftree="eza --color=always --icons=always --level=3 --group-directories-first -T -f"
+alias tree-a="eza -la --no-time --no-filesize --color=always --icons=always --level=3 --group-directories-first -T"
+# ls devices
+alias lsd="eza -la --no-time --no-filesize -g /dev/disk/by-uuid"
+alias lsd-pu="eza -la --no-time --no-filesize -g /dev/disk/by-partuuid"
+alias lsd-id="eza -la --no-time --no-filesize -g /dev/disk/by-id"
+alias lsd-l="eza -la --no-time --no-filesize -g /dev/disk/by-label"
+alias lsd-pl="eza -la --no-time --no-filesize -g /dev/disk/by-partlabel"
+alias lsd-path="eza -la --no-time --no-filesize -g /dev/disk/by-path"
 
 # Pacman
 # Install
@@ -53,11 +42,8 @@ alias pacqos="pacman -Ss"
 # Local Package Info
 alias pacqi="pacman -Qi"
 
-
 # Local Package Query
 alias pacqis="pacman -Qs"
-# Query for files created by package
-alias pacqf="pkgfile -l"
 
 alias sc-on="sudo systemctl start"
 alias sc-off="sudo systemctl stop"
@@ -73,7 +59,73 @@ alias usc-en="systemctl --user enable --now"
 alias usc-d="systemctl --suer disable"
 alias usc-dn="systemctl --user disable --now"
 
+alias find="fd"
 alias mkdir="mkdir -p"
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 
-alias fuzzel="fuzzel --launch-prefix='app2unit --fuzzel-compat --'"
-alias runapp="app2unit"
+# PLUGINS
+# Theme
+fpath+=( ~/.config/zsh/plugins/agkozak-zsh-prompt/ )
+autoload -Uz promptinit; promptinit
+prompt agkozak-zsh-prompt
+
+# ExShell Agkozak Prompt
+# Make sure the zsh/terminfo module is loaded
+(( ${+modules[zsh/terminfo]} )) || zmodload zsh/terminfo
+# If 256 colours available, use custom:
+if (( ${terminfo[colors]:-0} >= 256 )); then
+  AGKOZAK_COLORS_USER_HOST=51
+  AGKOZAK_COLORS_PATH=51
+  AGKOZAK_COLORS_BRANCH_STATUS=228
+  AGKOZAK_COLORS_EXIT_STATUS=174
+  AGKOZAK_COLORS_CMD_EXEC_TIME=245
+  AGKOZAK_COLORS_VIRTUALENV=188
+  AGKOZAK_COLORS_BG_STRING=223
+  AGKOZAK_COLORS_HISTORY=51
+fi
+EXSHELL_PROMPT+=$'%F{39}]-%f%F{33}[%f%F{99}>%f%F{33}]%f%F{39}-[%f'
+EXSHELL_PROMPT_START+=$' %F{39}[%f'
+EXSHELL_PROMPT_END+=$'%F{39}]%f '
+EXSHELL_CHAR+='%F{purple}\ »\ %f'
+# Line 1
+AGKOZAK_CUSTOM_PROMPT+=$' %F{39}╔═%f'
+AGKOZAK_CUSTOM_PROMPT+=$'${EXSHELL_PROMPT_START}'
+# Path - Persistant
+AGKOZAK_CUSTOM_PROMPT+='%B%F{${AGKOZAK_COLORS_PATH}}%2v%f%b'
+AGKOZAK_CUSTOM_PROMPT+=$'${EXSHELL_PROMPT}'
+# History
+AGKOZAK_CUSTOM_PROMPT+='%B%F{${AGKOZAK_COLORS_HISTORY}}%h%f%b'
+AGKOZAK_CUSTOM_PROMPT+=$'${EXSHELL_PROMPT}'
+# Background Status 
+AGKOZAK_CUSTOM_PROMPT+=$'%(1j.%F{${AGKOZAK_COLORS_BG_STRING}}%jj%f.)'
+AGKOZAK_CUSTOM_PROMPT+=$'${EXSHELL_PROMPT_END}'
+# Line 2
+AGKOZAK_CUSTOM_PROMPT+=$'\n %F{39}╚═%f'
+# Username and hostname
+AGKOZAK_CUSTOM_PROMPT+=$'${EXSHELL_PROMPT_START}'
+AGKOZAK_CUSTOM_PROMPT+='%(!.%S%B.%B%F{${AGKOZAK_COLORS_USER_HOST}})%n%1v%(!.%b%s.%f%b)'
+AGKOZAK_CUSTOM_PROMPT+=$'${EXSHELL_PROMPT_END}'
+# SHLVL and prompt character
+AGKOZAK_CUSTOM_PROMPT+=$'%F{116}[%f%F{99}'
+AGKOZAK_CUSTOM_PROMPT+=$'%(4V.:.%(!.#.@))%f'
+AGKOZAK_CUSTOM_PROMPT+=$'%F{116}]>%f '
+AGKOZAK_COLORS_BRANCH_STATUS=228
+# Right prompt
+# Git Status
+AGKOZAK_CUSTOM_RPROMPT+=$'${EXSHELL_PROMPT_START}'
+AGKOZAK_CUSTOM_RPROMPT+='%(3V.%F{${AGKOZAK_COLORS_BRANCH_STATUS}}%3v%f.)'
+AGKOZAK_CUSTOM_RPROMPT+=$'${EXSHELL_PROMPT}'
+# Venv Indicator
+AGKOZAK_CUSTOM_RPROMPT+='%(10V.%F{${AGKOZAK_COLORS_VIRTUALENV}}[%10v]%f.)'
+AGKOZAK_CUSTOM_RPROMPT+=$'${EXSHELL_PROMPT_END}'
+AGKOZAK_BLANK_LINES=1
+
+# Fast Syntax Highlighting
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+# Autocomplete
+# source ~/.config/zsh/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+# bindkey '^I' fzf_completion
+
+# Shell Start
+pfetch

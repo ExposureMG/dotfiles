@@ -1,0 +1,6 @@
+#!/bin/bash
+ln -sf start-here.svg start-here-kde.svg
+ln -sf start-here.svg start-here-kde-plasma.svg
+ln -sf start-here.svg start-here-kde-plasma-symbolic.svg
+ln -sf start-here.svg start-here-kde-symbolic.svg
+ln -sf start-here.svg start-here-symbolic.svg

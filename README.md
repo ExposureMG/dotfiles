@@ -28,43 +28,6 @@ FengZhongShaoNian / QWhiteSurGtkDecorations
   
 
 **Plugins 🧩**
-
-- zsh-syntax-highlighting
-
-- zsh-autosuggestions
-
-- zsh-completions
-
-  
-
-**[Oh-My-ZSH](https://github.com/ohmyzsh/ohmyzsh) Plugins 🦚**
-
-- command-not-found
-
-- common-aliases
-
-- archlinux
-
-- colorize
-
-- colored-man-pages
-
-- copypath
-
-- git
-
-- gitfast
-
-- sudo
-
-- systemd
-
-  
-
-**Theme 🎨**
-
-- Oh-My-ZSH/duellj
-
   
 
 ## Nano

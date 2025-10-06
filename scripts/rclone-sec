@@ -1,0 +1,2 @@
+#!/bin/bash
+rclone mount security:/ /home/e3xp0/Security --vfs-cache-mode writes

@@ -12,11 +12,6 @@ alias tree="eza --color=always --icons=always --level=3 --group-directories-firs
 alias tree-a="eza -la --no-time --no-filesize --color=always --icons=always --level=3 --group-directories-first -T"
 # ls devices
 alias lsd="eza -la --no-time --no-filesize -g /dev/disk/by-uuid"
-alias lsd-pu="eza -la --no-time --no-filesize -g /dev/disk/by-partuuid"
-alias lsd-id="eza -la --no-time --no-filesize -g /dev/disk/by-id"
-alias lsd-l="eza -la --no-time --no-filesize -g /dev/disk/by-label"
-alias lsd-pl="eza -la --no-time --no-filesize -g /dev/disk/by-partlabel"
-alias lsd-path="eza -la --no-time --no-filesize -g /dev/disk/by-path"
 
 # Pacman
 # Install
@@ -120,12 +115,16 @@ AGKOZAK_CUSTOM_RPROMPT+='%(10V.%F{${AGKOZAK_COLORS_VIRTUALENV}}[%10v]%f.)'
 AGKOZAK_CUSTOM_RPROMPT+=$'${EXSHELL_PROMPT_END}'
 AGKOZAK_BLANK_LINES=1
 
-# Fast Syntax Highlighting
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+# completions
+fpath=(~/.config/zsh/plugins/zsh-completions/src $fpath)
 
-# Autocomplete
-# source ~/.config/zsh/plugins/fzf-tab-completion/zsh/fzf-zsh-completion.sh
-# bindkey '^I' fzf_completion
+# fzf
+source <(fzf --zsh)
+autoload -U compinit; compinit
+source ~/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+
+# Fast Syntax Highlighting
+source ~/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 # Shell Start
 pfetch

@@ -1,0 +1,6 @@
+#!/bin/bash
+sudo pacman -Syu --noconfirm zsh stow eza fd rustup paru
+cd ~/dotfiles/home && rm -rf ~/.config/gtk*
+stow -vt ~ *
+rustup default stable
+paru -S --noconfirm pfetch-rs

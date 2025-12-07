@@ -29,6 +29,8 @@ alias paccleanr="sudo pacman -R"
 # "Deep Clean" Search installed orphan packages
 alias paccleand="sudo pacman -Qet"
 
+alias paru="paru --bottomup"
+
 # Pacman Query
 # Package Info
 alias pacqo="pacman -Si"

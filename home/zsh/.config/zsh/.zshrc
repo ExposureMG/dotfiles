@@ -58,6 +58,13 @@ alias usc-d="systemctl --suer disable"
 alias usc-dn="systemctl --user disable --now"
 alias usc-s="systemctl --user status"
 
+alias gclone="git clone"
+alias gadd="git add"
+alias gcom="git commit"
+alias grm="git rm"
+alias gpush="git push"
+alias gcommit="git add * && git commit"
+
 alias find="fd"
 alias mkdir="mkdir -p"
 alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
@@ -129,6 +136,11 @@ source ~/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 
 # Fast Syntax Highlighting
 source ~/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+
+# NVM
+source /usr/share/nvm/init-nvm.sh
 
 # Shell Start
 pfetch

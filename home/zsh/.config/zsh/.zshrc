@@ -130,7 +130,7 @@ AGKOZAK_BLANK_LINES=1
 fpath=(~/.config/zsh/plugins/zsh-completions/src $fpath)
 
 # fzf
-source <(fzf --zsh)
+source <(/home/deck/.nix-profile/bin/fzf --zsh)
 autoload -U compinit; compinit
 source ~/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 
@@ -139,8 +139,8 @@ source ~/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.p
 
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
-# NVM
-source /usr/share/nvm/init-nvm.sh
+# Nix
+if [ -e /home/deck/.nix-profile/etc/profile.d/nix.sh ]; then . /home/deck/.nix-profile/etc/profile.d/nix.sh; fi
 
 # Shell Start
 pfetch

@@ -1,22 +1,46 @@
 # Import alases
-source ~/.config/zsh/alias.zshrc
-
+source ~/.config/zsh/src/alias/alias.zshrc
 # Import agkozak theme
-source ~/.config/zsh/plugins/agkozak-zsh-prompt/theme.zshrc
+if [ -e ~/.config/zsh/src/themes/agkozak-zsh-prompt/theme.zshrc ]; then
+    fpath+=( ~/.config/zsh/src/themes/agkozak-zsh-prompt )
+    autoload promptinit; promptinit
+    prompt agkozak-zsh-prompt
+    source ~/.config/zsh/src/themes/agkozak-zsh-prompt/theme.zshrc
+else
+    echo "Ex-Shell Agkozak Not found! Falling back to default zsh theme"
+fi
 
-# completions
-fpath=(~/.config/zsh/plugins/zsh-completions/src $fpath)
+# zsh-completions
+if [ -e ~/.config/zsh/src/plugins/completions ]; then fpath=(~/.config/zsh/src/plugins/completions/src $fpath); fi
 
-# fzf
-source <(/home/deck/.nix-profile/bin/fzf --zsh)
-autoload -U compinit; compinit
-source ~/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+# Check fzf /usr/bin then nix
+if [ -e /usr/bin/fzf ]; then
+    . <(/usr/bin/fzf --zsh)
+    autoload -U compinit; compinit
+    . ~/.config/zsh/src/plugins/fzf/fzf-tab.plugin.zsh
+elif [ -e ~/.nix-profile/bin/fzf ]; then
+    . <(/home/deck/.nix-profile/bin/fzf --zsh)
+    autoload -U compinit; compinit
+    . ~/.config/zsh/src/plugins/fzf/fzf-tab.plugin.zsh
+fi
 
 # Fast Syntax Highlighting
-source ~/.config/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+if [ -e ~/.config/zsh/src/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]; then source ~/.config/zsh/src/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh; fi
 
 # miniconda3
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 
 # Nix
-if [ -e /home/deck/.nix-profile/etc/profile.d/nix.sh ]; then . /home/deck/.nix-profile/etc/profile.d/nix.sh; fi
+if [ -e /home/deck/.nix-profile/etc/profile.d/nix.sh ]; then 
+    . /home/deck/.nix-profile/etc/profile.d/nix.sh;
+    export EXSHELL_NIX=true
+fi
+
+# brew
+if [[ -d /home/linuxbrew/.linuxbrew && $- == *i* ]] ; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv | grep -Ev '\bPATH=')"
+  HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-/home/linuxbrew/.linuxbrew}"
+  export PATH="${PATH}:${HOMEBREW_PREFIX}/bin:${HOMEBREW_PREFIX}/sbin"
+  export EXSHELL_BREW=true
+fi
+

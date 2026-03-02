@@ -44,3 +44,4 @@ if [[ -d /home/linuxbrew/.linuxbrew && $- == *i* ]] ; then
   export EXSHELL_BREW=true
 fi
 
+. "$HOME/.cargo/env"

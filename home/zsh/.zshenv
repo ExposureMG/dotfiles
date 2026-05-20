@@ -19,4 +19,5 @@ export RANGER_LOAD_DEFAULT_RC=false
 #export GCM_CREDENTIAL_STORE=gpg
 
 # DEVKITXENON
-export DEVKITXENON="/home/e3xp0/devkitxenon/bin"
+export DEVKITXENON="/home/e3xp0/devkitxenon"
+export DEVKITXENONBIN="/home/e3xp0/devkitxenon/bin"

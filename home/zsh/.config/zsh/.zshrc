@@ -45,4 +45,4 @@ if [[ -d /home/linuxbrew/.linuxbrew && $- == *i* ]] ; then
 fi
 
 PATH=~/.local/bin:$PATH
-PATH=$DEVKITXENON:$PATH
+PATH="$PATH:$DEVKITXENON/bin:$DEVKITXENON/usr/bin"

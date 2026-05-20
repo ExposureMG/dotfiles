@@ -17,3 +17,7 @@ export EDITOR=nano
 export SUDO_EDITOR=nano
 export RANGER_LOAD_DEFAULT_RC=false
 #export GCM_CREDENTIAL_STORE=gpg
+
+# DEVKITXENON
+export DEVKITXENON="/home/e3xp0/devkitxenon"
+export PATH="${PATH:+${PATH}:}"$DEVKITXENON"/bin:"$DEVKITXENON"/usr/bin"

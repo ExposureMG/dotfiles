@@ -1,5 +1,47 @@
-# Import alases
-source ~/.config/zsh/src/alias/alias.zshrc
+# Import aliases
+if [ -e ~/.config/zsh/src/alias/alias.zshrc ]; then
+    source ~/.config/zsh/src/alias/alias.zshrc
+else
+    echo "Ex-Shell Aliases Not Found!"
+fi
+
+# Nix
+if [ -e /home/deck/.nix-profile/etc/profile.d/nix.sh ]; then 
+    . /home/deck/.nix-profile/etc/profile.d/nix.sh;
+    export EXSHELL_NIX=true
+fi
+
+# Check for fd, eza, and app-alias, and import
+if [ -e /usr/bin/fd ]; then
+    if [ -e /usr/bin/eza ]; then
+        if [ -e ~/.config/zsh/src/alias/app-alias.zshrc ]; then
+            source ~/.config/zsh/src/alias/app-alias.zshrc
+        else
+            echo "Ex-Shell Aliases Not Found!"
+        fi
+    elif [ -e ~/.nix-profile/bin/eza ] then
+        if [ -e ~/.config/zsh/src/alias/app-alias.zshrc ]; then
+            source ~/.config/zsh/src/alias/app-alias.zshrc
+        else
+            echo "Ex-Shell Aliases Not Found!"
+        fi
+elif [ -e ~/.nix-profile/bin/fd ]; then
+    if [ -e /usr/bin/eza ]; then
+        if [ -e ~/.config/zsh/src/alias/app-alias.zshrc ]; then
+            source ~/.config/zsh/src/alias/app-alias.zshrc
+        else
+            echo "Ex-Shell Aliases Not Found!"
+        fi
+    elif [ -e ~/.nix-profile/bin/eza ]; then
+        if [ -e ~/.config/zsh/src/alias/app-alias.zshrc ]; then
+            source ~/.config/zsh/src/alias/app-alias.zshrc
+        else
+            echo "Ex-Shell Aliases Not Found!"
+        fi
+    fi
+fi
+
+
 # Import agkozak theme
 if [ -e ~/.config/zsh/src/themes/agkozak-zsh-prompt/theme.zshrc ]; then
     fpath+=( ~/.config/zsh/src/themes/agkozak-zsh-prompt )
@@ -11,7 +53,14 @@ else
 fi
 
 # zsh-completions
-if [ -e ~/.config/zsh/src/plugins/completions ]; then fpath=(~/.config/zsh/src/plugins/completions/src $fpath); fi
+if [ -e ~/.config/zsh/src/plugins/completions ]; then 
+    fpath=(~/.config/zsh/src/plugins/completions/src $fpath);
+else
+    echo "zsh-completions Not Found!"
+fi
+
+# KDE Builder
+if [ -e ~/.local/share/kde-builder/data/completions/zsh ]; then fpath=(~/.local/share/kde-builder/data/completions/zsh $fpath); fi
 
 # Check fzf /usr/bin then nix
 if [ -e /usr/bin/fzf ]; then
@@ -27,15 +76,6 @@ fi
 # Fast Syntax Highlighting
 if [ -e ~/.config/zsh/src/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ]; then source ~/.config/zsh/src/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh; fi
 
-# miniconda3
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
-
-# Nix
-if [ -e /home/deck/.nix-profile/etc/profile.d/nix.sh ]; then 
-    . /home/deck/.nix-profile/etc/profile.d/nix.sh;
-    export EXSHELL_NIX=true
-fi
-
 # brew
 if [[ -d /home/linuxbrew/.linuxbrew && $- == *i* ]] ; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv | grep -Ev '\bPATH=')"
@@ -44,5 +84,4 @@ if [[ -d /home/linuxbrew/.linuxbrew && $- == *i* ]] ; then
   export EXSHELL_BREW=true
 fi
 
-PATH=~/.local/bin:$PATH
-PATH="$PATH:$DEVKITXENON/bin:$DEVKITXENON/usr/bin"
+export PATH="$HOME/sdk/xenon/bin:$HOME/.local/bin:$PATH"

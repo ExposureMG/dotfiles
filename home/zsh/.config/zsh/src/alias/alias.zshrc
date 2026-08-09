@@ -1,18 +1,5 @@
-# Stow link command
-alias stowaway="stow -vt ~ *"
 
 # Aliases
-# d = dir only, f = file only
-# ls
-alias ls="eza --color=always --icons=always --level=3 --group-directories-first"
-# ls all
-alias lsa="eza -la --no-time --no-filesize --group-directories-first -g"
-# ls tree
-alias tree="eza --color=always --icons=always --level=3 --group-directories-first -T"
-alias tree-a="eza -la --no-time --no-filesize --color=always --icons=always --level=3 --group-directories-first -T"
-# ls devices
-alias lsd="eza -la --no-time --no-filesize -g /dev/disk/by-uuid"
-
 # Arch Linux Pacman
 # Install
 alias pacin="sudo pacman -S"
@@ -59,9 +46,7 @@ alias gadd="git add"
 alias gcom="git commit"
 alias grm="git rm"
 alias gpush="git push"
-alias gcommit="git add * && git commit"
+alias gcommit="git add . && git commit"
 
 # Apps
-alias find="fd"
-alias mkdir="mkdir -p"
-alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg" # probably should disable if on ubuntu etc
